@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Floto NPS – Customer Feedback Chat App
 
-## Getting Started
+Floto NPS is a AI-powered customer feedback application built with [Next.js](https://nextjs.org). It collects Net Promoter Score (NPS) ratings and initiates a personalized, conversational follow-up with users, leveraging Google Gemini AI for empathetic, actionable insights.
 
-First, run the development server:
+![Floto NPS Screenshot](public/nps-form.png) <!-- Add a screenshot if available -->
+
+![Floto NPS Screenshot](public/chat-interface.png) <!-- Add a screenshot if available -->
+
+---
+
+## ✨ Features
+
+- **NPS Collection:** Simple, attractive UI for users to rate their experience (0–10).
+- **AI Chat Follow-up:** Automated, context-aware chat powered by Google Gemini, tailored to the user's NPS score.
+- **Empathetic Responses:** Dynamic prompts for detractors, passives, and promoters.
+- **Modern UI:** Responsive, accessible design using Tailwind CSS and Radix UI primitives.
+- **TypeScript & Modular:** Fully typed, maintainable, and easy to extend.
+
+---
+
+## 🚀 Getting Started
+
+First, install dependencies:
 
 ```bash
+pnpm install
+# or
+npm install
+# or
+yarn install
+```
+
+Then, run the development server:
+
+```bash
+pnpm dev
+# or
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Project Structure
 
-## Learn More
+```
+src/
+  app/                # Next.js app directory
+    api/chat/         # API route for AI chat
+    layout.tsx        # Root layout
+    page.tsx          # Main page (NPS form & chat)
+    globals.css       # Global styles
+  components/         # UI and feature components
+    nps-form.tsx      # NPS rating form
+    chat.tsx          # Chat interface
+    messages.tsx      # Chat message display
+    chat-header.tsx   # Chat header with NPS badge
+    ui/               # Reusable UI primitives (button, card, input, avatar)
+  lib/
+    prompts.ts        # AI prompt generation logic
+    utils.ts          # Utility functions (score color, label, etc.)
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🤖 How It Works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **User submits NPS score** via the form.
+2. **AI chat starts**: The app sends the score to the backend ([`src/app/api/chat/route.ts`](src/app/api/chat/route.ts)), which generates a tailored prompt using [`lib/prompts.ts`](src/lib/prompts.ts).
+3. **Google Gemini responds**: The AI engages the user in a follow-up conversation, adapting its tone and questions based on the NPS category.
+4. **UI updates in real-time**: Messages are streamed and displayed in the chat interface.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏗️ Built With
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org)
+- [Tailwind CSS](https://tailwindcss.com)
+- [ShadCN](https://ui.shadcn.com/)
+- [Google Gemini (AI)](https://ai.google.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vercel AI SDK](https://ai-sdk.dev/)
